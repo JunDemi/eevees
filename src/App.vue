@@ -15,10 +15,11 @@ export default {
   },
   beforeCreate() {
       console.log("컴포넌트 생성 이전" , this.count);
-      this.test();
+      //this.test(); //컴포넌트 생성 이전이라 호출 에러 발생
     },
   created(){
     console.log("컴포넌트 생성 후" , this.count);
+    this.test();
   },
   // beforeMount() {
   //   console.log("HTML엘리먼트 마운트 전" , document.querySelector('h1'));
