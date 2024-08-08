@@ -1,28 +1,32 @@
 <template>
     <h2>자식</h2>
-    <div>{{ sendProps1 }}</div>
-    <div>{{ sendProps2 }}</div>
-    <hr/>
-    <div>{{ sendProps3.id }}</div>
-    <div>{{ sendProps3.name }}</div>
+    <button @click="sendEvent">전달</button>
 </template>
-<script setup lang="ts">
-import { toRefs } from 'vue';
+<script>
+// //compositionAPI
+// import { ref } from 'vue';
+// const childText = ref("자식 컴포넌트 텍스트");
+// const emit = defineEmits(["이벤트전달"]);
 
-interface Props{
-    sendProps1: String;
-    sendProps2: String;
-    sendProps3: {
-        id: String;
-        name: String;
+// const sendEvent = () => {
+//     emit('이벤트전달', childText.value);
+// };
+
+//optionsAPI
+export default {
+    data() {
+        return {
+            text: "자식 컴포넌트 텍스트",
+        }
+    },
+    methods: {
+       sendEvent() {
+            this.$emit('이벤트전달', this.text)
+       }
     }
 }
-const props = defineProps<Props>();
-
-//toRefs: 전달받은 props의 객체 구조 분해
-const {sendProps1, sendProps2, sendProps3} = toRefs(props);
-
 </script>
+
 <style lang="">
     
 </style>
