@@ -8,7 +8,7 @@
                 :class="{active: pokemon.name === clickMenu ? true : false}"
                 >
                 <img :src="pokemon.modelImg" alt="" width="70px" height="70px" />
-                {{ clickMenu === pokemon.name ? pokemon.name : "" }}
+                <p>{{ clickMenu === pokemon.name ? pokemon.name : "" }}</p>
             </span>
         </div>
     </section>
@@ -33,7 +33,6 @@ export default {
     },
     methods: {
         changeMenu(name) {
-
             this.clickMenu = name;
         }
     }
