@@ -1,17 +1,41 @@
+.bg-video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: brightness(0.3);  /* 명도 조절: 0.5배 */
+}
 .home-container{
-    width: 100vw;
+    display: flex;
+    justify-content: space-between;
     height: 100vh;
-    video{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: -1;
-        transform: translate(-50%, -50%);
-        object-fit: cover;
-        filter: brightness(0.3);  /* 명도 조절: 0.5배 */
-    }
+        .menu-list{
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            place-items: end;
+            span{
+                overflow: hidden;
+                transition: .2s ease-in;
+                width: 100px;
+                cursor: pointer;
+                height: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 3rem;
+                font-size: 15px;
+                color: #fff;
+                padding-left: 1rem;
+                background-size: cover;
+                border-top-left-radius: 60px;
+                border-bottom-left-radius: 60px;
+                border: 3px solid #000;
+            }
+        }
 }
