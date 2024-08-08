@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    name: 'Home'
+    name: 'Home' //라우터 이름
 }
 </script>
 <style lang="">
