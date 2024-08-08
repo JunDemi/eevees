@@ -1,21 +1,9 @@
 <template>
     <section class="home-container">
-        <div class="top-left">
-            <div class="sector1">1</div>
-            <div class="sector2">2</div>
-        </div>
-        <div class="top-right">
-            <div class="sector3">3</div>
-            <div class="sector4">4</div>
-        </div>
-        <div class="bottom-left">
-            <div class="sector7">7</div>
-            <div class="sector8">8</div>
-        </div>
-        <div class="bottom-right">
-            <div class="sector5">5</div>
-            <div class="sector6">6</div>
-        </div>
+        <div class="main"></div>
+        <video autoplay muted loop>
+            <source src="/bg_Videos/eevee.mp4" type="video/mp4"/>
+        </video>
     </section>
 </template>
 <script>
