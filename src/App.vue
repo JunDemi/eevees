@@ -26,6 +26,11 @@ export default {
   // mounted() {
   //   console.log("HTML엘리먼트 마운트 후" , document.querySelector('h1'));
   // },
+  methods: {
+    test() {
+      console.log("테스트 함수입니당");
+    },
+  }
 }
 </script>
 <style lang="scss" scoped></style>
