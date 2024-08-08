@@ -13,7 +13,7 @@
         </div>
     </section>
     <video class="bg-video" autoplay muted loop>
-        <source src="/bg_Videos/eevee.mp4" type="video/mp4" />
+        <source src="../static/bg_Videos/eevee.mp4" type="video/mp4" />
     </video>
 </template>
 <script>
