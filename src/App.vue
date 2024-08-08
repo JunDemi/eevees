@@ -1,34 +1,29 @@
 <template>
   <div>
-     <h1>{{ text }}</h1>
-     <h1>{{ textChange() }}</h1>
-     <h1>{{ textChange() }}</h1>
-     <h1>{{ textChange() }}</h1>
-     <hr/>
-     <h1>{{ computedText }}</h1>
-     <h1>{{ computedText }}</h1>
-     <h1>{{ computedText }}</h1>
+    <h1 @click="changeMessage">{{ message }}</h1>
+    <h2>{{ setMessage }}</h2>
   </div>
 </template>
 <script>
 export default {
-  data(){
+  data() {
     return {
-      text: "이니셜 키워드"
+      message: "이니셜 문구",
+      setMessage: '',
     }
   },
-  //method와 달리 캐싱 기능이 있음
-  computed: {
-    computedText() {
-      console.log("computed 호출");
-      return this.text.split('').reverse().join('');
+  //동적인 변경 데이터 감지
+  //computed로 변경된 데이터도 감지
+  watch: {
+    message(){
+      this.setMessage = "watch 호출"
     }
   },
   methods: {
-    textChange() {
-      console.log("methods 호출");
-      return this.text.split('').reverse().join('');
-    },
+    changeMessage() {
+      console.log('methods 호출');
+      this.message = "변경된 문구";
+    }
   }
 }
 </script>
