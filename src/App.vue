@@ -1,30 +1,21 @@
 <template>
-  <h1>부모</h1>
-  <hr/>
-  <Child @send-event="getEvent"/>
+  <div>
+    <input type="text" v-model="inputValue1"/>
+    <input type="text" :value="inputValue2" @input="inputValue2 = $event.target.value"/>
+    <div>{{ inputValue1 }}</div>
+    <div>{{ inputValue2 }}</div>
+  </div>
 </template>
-
 <script>
-import Child from "./components/child.vue";
-// //compositionAPI
-// import { reactive, ref } from "vue";
-
-// const getEvent = (event) => {
-//   console.log(event);
-// }
-
-//optionsAPI
 export default {
-  components: {
-    Child,
-  },
-  methods: {
-    getEvent(event) {
-      console.log(event);
+  data() {
+    return {
+      inputValue1: "",
+      inputValue2: ""
     }
   }
 }
 </script>
-<style>
+<style lang="">
   
 </style>
