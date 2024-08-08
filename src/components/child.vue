@@ -21,7 +21,7 @@ export default {
     },
     methods: {
        sendEvent() {
-            this.$emit('이벤트전달', this.text)
+            this.$emit('send-event', this.text)
        }
     }
 }

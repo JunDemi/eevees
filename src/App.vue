@@ -1,13 +1,13 @@
 <template>
   <h1>부모</h1>
   <hr/>
-  <Child @이벤트전달="getEvent"/>
+  <Child @send-event="getEvent"/>
 </template>
 
 <script>
+import Child from "./components/child.vue";
 // //compositionAPI
 // import { reactive, ref } from "vue";
-// import Child from "./components/child.vue";
 
 // const getEvent = (event) => {
 //   console.log(event);
