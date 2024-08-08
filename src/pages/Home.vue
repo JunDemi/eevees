@@ -1,6 +1,6 @@
 <template>
     <section class="home-container">
-        <div class="intro"></div>
+        <Intro :sendPokemon="clickMenu"/>
         <div class="view">{{ clickMenu }}</div>
         <div class="menu-list">
             <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.name"
@@ -19,11 +19,12 @@
 <script>
 import { menuAPI } from '../api/menuAPI';
 import '../assets/home.scss';
+import Intro from '../components/Intro.vue';
 
 export default {
     name: 'Home', //라우터 이름
     components: { //컴포넌트
-
+        Intro
     },
     data() {
         return {
