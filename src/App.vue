@@ -1,12 +1,8 @@
 <template>
   <section>
-    <!-- <div class="case1" v-if="isVisible">true값</div>
-    <div class="case2" v-if="isVisible">true값</div>
-    <div class="case3" v-else>false값</div> -->
-
-    <div v-if="count === 2" class="case1"></div>
-    <div v-else class="case2"></div>
-    <button @click="count++">변경</button>
+    <div v-show="isVisible" class="case1"></div>
+    <div v-show="!isVisible" class="case2"></div>
+    <button @click="setChange">변경</button>
   </section>
 </template>
 <script>
@@ -14,7 +10,6 @@ export default {
   data() {
     return {
       isVisible: false,
-      count: 0
     }
   },
   methods: {
