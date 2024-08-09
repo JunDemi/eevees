@@ -11,12 +11,9 @@
                     <h2>{{ menuArray[pokemonNo].name }}</h2>
                     <p>{{ pokemonProps.genus }}</p>
 
-                    <div class="types">
-                        <img :src="matchTypeName(pokemonProps.type)?.typeImg" alt="" />
-                        <span :style="matchTypeName(pokemonProps.type)?.typeStyle">{{
-                            matchTypeName(pokemonProps.type)?.korean
-                            }}</span>
-                    </div>
+                    <span class="types" :style="matchTypeName(pokemonProps.type)?.typeStyle">{{
+                        matchTypeName(pokemonProps.type)?.korean
+                    }}</span>
                 </div>
                 <div class="buttons">
                     <button @click="arrowClick('prev')">
