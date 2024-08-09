@@ -52,7 +52,8 @@
                 width: 50%;
                 z-index: 1;
             }
-            button{
+
+            button {
                 cursor: pointer;
                 border-radius: 50%;
                 position: absolute;
@@ -65,13 +66,16 @@
                 align-items: center;
                 background: #fff;
                 border: 3px solid #000000;
-                &:active{
+
+                &:active {
                     background: #f4d4c9;
-                    svg{
+
+                    svg {
                         stroke-width: 4px;
                     }
                 }
-                svg{
+
+                svg {
                     transition: all .2s;
                     fill: none;
                     stroke: #000;
@@ -87,7 +91,6 @@
             color: #fff;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
 
             .intro-top {
                 display: flex;
@@ -143,14 +146,15 @@
 
                         &:nth-child(1) {
                             &:active {
-                                svg{
+                                svg {
                                     transform: translateY(-5px);
                                 }
                             }
                         }
+
                         &:nth-child(2) {
                             &:active {
-                                svg{
+                                svg {
                                     transform: translateY(5px);
                                 }
                             }
@@ -161,19 +165,47 @@
 
 
             .description {
-                margin-top: 20px;
+                margin: 20px 0 8px 0;
                 font-family: 'Ramche';
-                padding-top: 25px;
+                padding-top: 50px;
                 text-align: center;
                 font-size: 15px;
                 line-height: 1.5rem;
                 width: 300px;
-                height: 100px;
+                height: 120px;
                 background-color: #fff;
                 border: none;
                 color: #000;
                 border: 3px solid #000;
                 border-radius: 15px;
+            }
+
+        }
+
+        .details {
+            width: 100%;
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-items: center;
+            gap: 8px;
+
+            div {
+                border: 3px solid #000;
+                border-radius: 15px;
+                background-color: #fff;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                p {
+                    font-size: 13px;
+                }
+                span{
+                    font-size: 17px;
+                }
             }
         }
     }

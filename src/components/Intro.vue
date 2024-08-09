@@ -20,7 +20,7 @@
 
                     <span class="types" :style="matchTypeName(pokemonProps.type)?.typeStyle">{{
                         matchTypeName(pokemonProps.type)?.korean
-                    }}</span>
+                        }}</span>
                 </div>
                 <div class="buttons">
                     <button @click="arrowClick('prev')">
@@ -40,14 +40,28 @@
                     <source src="../static/plink.mp3" type="audio/mp3" />
                 </audio>
             </div>
-
-
             <textarea class="description" readonly>{{ pokemonProps.description }}</textarea>
-
-
-
         </div>
-
+        <div class="details">
+            <div>
+                <p>신장</p>
+                <span>
+                    {{ pokemonProps.height / 10 }}m
+                </span>
+            </div>
+            <div>
+                <p>체중</p>
+                <span>
+                    {{ pokemonProps.weight / 10 }}kg
+                </span>
+            </div>
+            <div>
+                <p>포획률</p>
+                <span>
+                    {{ pokemonProps.capture }}
+                </span>
+            </div>
+        </div>
     </div>
 </template>
 <script>

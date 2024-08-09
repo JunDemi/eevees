@@ -47,7 +47,10 @@ export default {
                 type: "", //포켓몬 타입
                 id: 0, //포켓몬 도감번호 
                 voice: "", //포켓몬 울음소리
-                description: "" //포켓몬 도감설명
+                description: "", //포켓몬 도감설명
+                height: 0,
+                weight: 0,
+                capture: 0,
             }
         }
     },
@@ -89,13 +92,16 @@ export default {
             const speciesResponse = await axios.get(response.data.species.url); //포켓몬의 종
             const koreanGenus = await speciesResponse.data.genera.find(gen => gen.language.name === 'ko'); //한국어: 포켓몬 별명
             const pokemonDesc = await speciesResponse.data.flavor_text_entries.find(desc => desc.language.name === 'ko').flavor_text; //한국어 설명란 하나만 추출
-
+            
             this.pokemonData = { //하나의 객체로 통합하여 할당
-                genus: koreanGenus.genus,
-                type: response.data.types[0].type.name,
-                id: response.data.id,
-                voice: response.data.cries.latest,
-                description: pokemonDesc
+                genus: koreanGenus.genus, //한국어 별명
+                type: response.data.types[0].type.name, //타입명
+                id: response.data.id, //도감번호
+                voice: response.data.cries.latest, //울음소리
+                description: pokemonDesc, //도감 설명
+                height: response.data.height, //신장
+                weight: response.data.weight, //체중
+                capture: speciesResponse.data.capture_rate //포획률
             }
         },
         childUpdate(changeNumber){ //자식컴포넌트의 emit 핸들러
