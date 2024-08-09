@@ -19,19 +19,22 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button @click="arrowClick">
+                    <button @click="arrowClick('prev')">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                         </svg>
 
                     </button>
-                    <button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
-                            stroke="currentColor">
+                    <button @click="arrowClick('next')"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="3" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
                     </button>
                 </div>
+                <audio ref="clickSound">
+                    <source src="../static/plink.mp3" type="audio/mp3" />
+                </audio>
             </div>
 
 
@@ -68,12 +71,18 @@ export default {
         matchTypeName(type) { //현재 포켓몬의 타입과 일치한 배열의 데이터 가져오기
             return this.typeArray.find(t => t.type === type);
         },
-        arrowClick() {
-            const currentNo = this.menuArray.find(n => n.no === this.pokemonNo).no;
-            console.log(currentNo);
-            // if(currentNo >= 1) {
-            //     this.$emit('getChangeChild', currentNo - 1);
-            // }
+        arrowClick(direction) { //도감 중앙 화살표 버튼 클릭 이밴트. 부모 컴포넌트에 emit전송하여 페이지 변경을 요청
+
+            if (direction === "prev") { //위 버튼 클릭
+                this.pokemonNo > 0 && this.$emit('getChangeChild', this.pokemonNo - 1); //현재 페이지가 0보다 클 경우에 emit작동
+            }
+            else if (direction === "next") { //아래 버튼 클릭
+                this.pokemonNo < 8 && this.$emit('getChangeChild', this.pokemonNo + 1); //현재 페이지가 8보다 작을 경우에 emit작동
+            }
+            const audio = this.$refs.clickSound; //ref지정된 오디오 태그
+            if (audio) {
+                audio.play();
+            }
         }
     },
 }

@@ -90,7 +90,7 @@ export default {
             const koreanGenus = await speciesResponse.data.genera.find(gen => gen.language.name === 'ko'); //한국어: 포켓몬 별명
             const pokemonDesc = await speciesResponse.data.flavor_text_entries.find(desc => desc.language.name === 'ko').flavor_text; //한국어 설명란 하나만 추출
 
-            this.pokemonData = {
+            this.pokemonData = { //하나의 객체로 통합하여 할당
                 genus: koreanGenus.genus,
                 type: response.data.types[0].type.name,
                 id: response.data.id,
@@ -98,8 +98,8 @@ export default {
                 description: pokemonDesc
             }
         },
-        childUpdate(currentNumber){
-
+        childUpdate(changeNumber){ //자식컴포넌트의 emit 핸들러
+            this.clickMenu = changeNumber; //변경된 숫자값을 메뉴에 적용
         }
     }
 }
