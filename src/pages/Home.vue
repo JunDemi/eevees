@@ -1,15 +1,15 @@
 <template>
     <section class="home-container">
-        <Intro :pokemonProps="pokemonData" :pokemonName="clickMenu" :menuArray="menuArray"/>
+        <Intro :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray" @getChangeChild="childUpdate"/>
         <div class="view">{{ clickMenu }}</div>
         <audio ref="clickSound" >
             <source src="../static/plink.mp3" type="audio/mp3"/>
         </audio>
         <div class="menu-list">
-            <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.name"
-                @click="changeMenu(pokemon.name)" :class="{ active: pokemon.name === clickMenu ? true : false }">
+            <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.no"
+                @click="changeMenu(pokemon.no)" :class="{ active: pokemon.no === clickMenu ? true : false }">
                 <img :src="pokemon.modelImg" alt="" width="70px" height="70px" />
-                <p>{{ clickMenu === pokemon.name ? pokemon.name : "" }}</p>
+                <p>{{ clickMenu === pokemon.no ? pokemon.name : "" }}</p>
             </span>
         </div>
     </section>
@@ -39,7 +39,7 @@ export default {
     data() {
         return {
             //현재 선택된 메뉴
-            clickMenu: "이브이",
+            clickMenu: 0,
             //메뉴 배열
             menuArray: menuAPI,
             pokemonData: {
@@ -53,8 +53,8 @@ export default {
     },
     methods: {
         //메뉴 선택 메소드
-        changeMenu(name) {
-            this.clickMenu = name;
+        changeMenu(no) {
+            this.clickMenu = no;
             const audio = this.$refs.clickSound; //ref지정된 오디오 태그
             if (audio) {
                 audio.play();
@@ -63,23 +63,23 @@ export default {
         //이름 포맷 (이브이 -> eevee)
         nameFormat(sendName) {
             switch (sendName) {
-                case "이브이":
+                case 0:
                     return "eevee"
-                case "샤미드":
+                case 1:
                     return "vaporeon"
-                case "쥬피썬더":
+                case 2:
                     return "jolteon"
-                case "부스터":
+                case 3:
                     return "flareon"
-                case "에브이":
+                case 4:
                     return "espeon"
-                case "블래키":
+                case 5:
                     return "umbreon"
-                case "리피아":
+                case 6:
                     return "leafeon"
-                case "글레이시아":
+                case 7:
                     return "glaceon"
-                case "님피아":
+                case 8:
                     return "sylveon"
             }
         },
@@ -98,6 +98,9 @@ export default {
                 description: pokemonDesc
             }
         },
+        childUpdate(currentNumber){
+
+        }
     }
 }
 </script>
