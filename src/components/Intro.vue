@@ -91,10 +91,10 @@ export default {
         arrowClick(direction) { //도감 중앙 화살표 버튼 클릭 이밴트. 부모 컴포넌트에 emit전송하여 페이지 변경을 요청
 
             if (direction === "prev") { //위 버튼 클릭
-                this.pokemonNo > 0 && this.$emit('getChangeChild', this.pokemonNo - 1); //현재 페이지가 0보다 클 경우에 emit작동
+                this.pokemonNo > 0 ? this.$emit('getChangeChild', this.pokemonNo - 1) : this.$emit('getChangeChild', 8); //현재 페이지가 0보다 클 경우에 -1, 아니면 끝 페이지로 emit
             }
             else if (direction === "next") { //아래 버튼 클릭
-                this.pokemonNo < 8 && this.$emit('getChangeChild', this.pokemonNo + 1); //현재 페이지가 8보다 작을 경우에 emit작동
+                this.pokemonNo < 8 ? this.$emit('getChangeChild', this.pokemonNo + 1) : this.$emit('getChangeChild', 0);; //현재 페이지가 8보다 작을 경우에 +1, 아니면 첫 페이지로 emit
             }
             const audio = this.$refs.clickSound; //ref지정된 오디오 태그
             if (audio) {
