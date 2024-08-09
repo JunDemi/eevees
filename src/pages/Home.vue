@@ -26,9 +26,9 @@ export default {
         Intro
     },
     watch: {
-        clickMenu: { //부모 컴포넌트에서 전달받은 props가 변화할 때
+        clickMenu: { //우측 포켓몬 메뉴 클릭 시
             immediate: true, // 컴포넌트가 처음 렌더링될 때도 실행
-            handler(clickMenu) { //핸들러의 매개변수 = props
+            handler(clickMenu) { //핸들러의 매개변수 = 클릭 메뉴
                 this.getPokemonData(clickMenu);
             },
         },

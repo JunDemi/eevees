@@ -23,8 +23,8 @@ export default {
         }
     },
     methods: {
-        playAudio() {
-            const audio = this.$refs.audioPlayer;
+        playAudio() { //버튼 클릭 시 울음소리 오디오 재생
+            const audio = this.$refs.audioPlayer; //ref지정된 오디오 태그
             if (audio) {
                 audio.play();
             }
