@@ -1,7 +1,7 @@
 <template>
     <section class="home-container">
         <Intro :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray" @getChangeChild="childUpdate"/>
-        <div class="view">{{ clickMenu }}</div>
+        <PhotoContainer :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray"/>
         <audio ref="clickSound" >
             <source src="../static/plink.mp3" type="audio/mp3"/>
         </audio>
@@ -22,11 +22,13 @@ import axios from 'axios';
 import { menuAPI } from '../api/menuAPI';
 import '../assets/home.scss';
 import Intro from '../components/Intro.vue';
+import PhotoContainer from '../components/PhotoContainer.vue';
 
 export default {
     name: 'Home', //라우터 이름
     components: { //컴포넌트
-        Intro
+        Intro, //도감 UI
+        PhotoContainer, //중앙 포켓몬 사진 슬라이드
     },
     watch: {
         clickMenu: { //우측 포켓몬 메뉴 클릭 시
