@@ -1,6 +1,6 @@
 <template>
     <section class="home-container">
-        <Intro :pokemonProps="pokemonData" :pokemonName="clickMenu"/>
+        <Intro :pokemonProps="pokemonData" :pokemonName="clickMenu" :menuArray="menuArray"/>
         <div class="view">{{ clickMenu }}</div>
         <div class="menu-list">
             <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.name"
@@ -43,7 +43,8 @@ export default {
                 genus: "", //포켓몬 별명
                 type: "", //포켓몬 타입
                 id: 0, //포켓몬 도감번호 
-                voice: "" //포켓몬 울음소리
+                voice: "", //포켓몬 울음소리
+                description: "" //포켓몬 도감설명
             }
         }
     },
@@ -80,12 +81,14 @@ export default {
             const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/pokemon/${this.nameFormat(sendName)}`); //포켓몬 기본 정보
             const speciesResponse = await axios.get(response.data.species.url); //포켓몬의 종
             const koreanGenus = await speciesResponse.data.genera.find(gen => gen.language.name === 'ko'); //한국어: 포켓몬 별명
+            const pokemonDesc = await speciesResponse.data.flavor_text_entries.find(desc => desc.language.name === 'ko').flavor_text; //한국어 설명란 하나만 추출
 
             this.pokemonData = {
                 genus: koreanGenus.genus,
                 type: response.data.types[0].type.name,
                 id: response.data.id,
-                voice: response.data.cries.latest
+                voice: response.data.cries.latest,
+                description: pokemonDesc
             }
         },
     }
