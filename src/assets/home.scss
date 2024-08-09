@@ -52,6 +52,34 @@
                 width: 50%;
                 z-index: 1;
             }
+            button{
+                cursor: pointer;
+                border-radius: 50%;
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #fff;
+                border: 3px solid #000000;
+                &:active{
+                    background: #f4d4c9;
+                    svg{
+                        stroke-width: 4px;
+                    }
+                }
+                svg{
+                    transition: all .2s;
+                    fill: none;
+                    stroke: #000;
+                    stroke-width: 2px;
+                    width: 20px;
+                    height: 20px;
+                }
+            }
         }
 
         .pokemon-name {
@@ -110,11 +138,21 @@
                         svg {
                             width: 50px;
                             height: 50px;
+                            transition: all .2s;
                         }
 
-                        &:active {
-                            svg {
-                                stroke: #424242;
+                        &:nth-child(1) {
+                            &:active {
+                                svg{
+                                    transform: translateY(-5px);
+                                }
+                            }
+                        }
+                        &:nth-child(2) {
+                            &:active {
+                                svg{
+                                    transform: translateY(5px);
+                                }
                             }
                         }
                     }

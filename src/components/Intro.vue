@@ -1,8 +1,15 @@
 <template>
     <div class="intro">
-        <div class="intro-gif" :style="menuArray.find(f => f.no === pokemonNo).menuStyle">
+        <div class="intro-gif" :style="menuArray.find(f => f.no === pokemonNo).dexBacground">
             <img :src="'/src/static/3D_Models/' + menuArray[pokemonNo].name + '.gif'" class="model" />
             <img src="/src/static/ground.png" class="ground">
+            <audio :key="pokemonProps.voice" ref="audioPlayer" :src="pokemonProps.voice" type="audio/ogg"></audio>
+            <button @click="playAudio">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                </svg>
+            </button>
         </div>
         <div class="pokemon-name">
             <div class="intro-top">
@@ -17,14 +24,14 @@
                 </div>
                 <div class="buttons">
                     <button @click="arrowClick('prev')">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                         </svg>
 
                     </button>
                     <button @click="arrowClick('next')"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke-width="3" stroke="currentColor">
+                            viewBox="0 0 24 24" stroke-width="5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
                     </button>
@@ -37,8 +44,7 @@
 
             <textarea class="description" readonly>{{ pokemonProps.description }}</textarea>
 
-            <audio :key="pokemonProps.voice" ref="audioPlayer" :src="pokemonProps.voice" type="audio/ogg"></audio>
-            <button @click="playAudio">울음소리</button>
+
 
         </div>
 
