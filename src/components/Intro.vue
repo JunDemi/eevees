@@ -9,10 +9,11 @@
             <h2>{{ pokemonName }}</h2>
             <p>{{ pokemonProps.genus }}</p>
             <div class="types">
-                <img :src="matchTypeName(pokemonProps.type)?.typeImg" alt=""/>
-                <span :style="matchTypeName(pokemonProps.type)?.typeStyle">{{ matchTypeName(pokemonProps.type)?.korean }}</span>
+                <img :src="matchTypeName(pokemonProps.type)?.typeImg" alt="" />
+                <span :style="matchTypeName(pokemonProps.type)?.typeStyle">{{ matchTypeName(pokemonProps.type)?.korean
+                    }}</span>
             </div>
-            
+
             <textarea class="description" readonly>{{ pokemonProps.description }}</textarea>
 
             <audio :key="pokemonProps.voice" ref="audioPlayer" :src="pokemonProps.voice" type="audio/ogg"></audio>

@@ -2,6 +2,9 @@
     <section class="home-container">
         <Intro :pokemonProps="pokemonData" :pokemonName="clickMenu" :menuArray="menuArray"/>
         <div class="view">{{ clickMenu }}</div>
+        <audio ref="clickSound" >
+            <source src="../static/plink.mp3" type="audio/mp3"/>
+        </audio>
         <div class="menu-list">
             <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.name"
                 @click="changeMenu(pokemon.name)" :class="{ active: pokemon.name === clickMenu ? true : false }">
@@ -52,6 +55,10 @@ export default {
         //메뉴 선택 메소드
         changeMenu(name) {
             this.clickMenu = name;
+            const audio = this.$refs.clickSound; //ref지정된 오디오 태그
+            if (audio) {
+                audio.play();
+            }
         },
         //이름 포맷 (이브이 -> eevee)
         nameFormat(sendName) {
