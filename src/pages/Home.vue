@@ -28,11 +28,14 @@ export default {
     },
     data() {
         return {
+            //현재 선택된 메뉴
             clickMenu: "이브이",
+            //메뉴 배열
             menuArray: menuAPI
         }
     },
     methods: {
+        //메뉴 선택 메소드
         changeMenu(name) {
             this.clickMenu = name;
         }

@@ -18,9 +18,25 @@
     justify-content: space-between;
     height: 100vh;
     .intro{
+        width: 500px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
         img{
             height: 100px;
             margin: 30px;
+        }
+        .pokemon-name{
+            margin-left: 100px;
+            color: #fff;
+            h2{
+                font-size: 50px;
+            }
+            p{
+                font-size: 20px;
+                margin-left: 20px;
+                margin-top: 10px;
+            }
         }
     }
     .menu-list {
@@ -46,7 +62,7 @@
             border-left: 3px solid;
             border-top: 3px solid;
             border-bottom: 3px solid;
-            
+
             p {
                 font-size: 18px;
                 height: 1rem;
