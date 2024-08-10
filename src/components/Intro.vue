@@ -1,3 +1,43 @@
+<script>
+import { typeAPI } from '../api/typeAPI';
+
+export default {
+    props: {
+        pokemonProps: Object,
+        pokemonNo: Number,
+        menuArray: Array,
+    },
+    data() {
+        return {
+            typeArray: typeAPI,
+        }
+    },
+    methods: {
+        playAudio() { //버튼 클릭 시 울음소리 오디오 재생
+            const audio = this.$refs.audioPlayer; //ref지정된 오디오 태그
+            if (audio) {
+                audio.play();
+            }
+        },
+        matchTypeName(type) { //현재 포켓몬의 타입과 일치한 배열의 데이터 가져오기
+            return this.typeArray.find(t => t.type === type);
+        },
+        arrowClick(direction) { //도감 중앙 화살표 버튼 클릭 이밴트. 부모 컴포넌트에 emit전송하여 페이지 변경을 요청
+
+            if (direction === "prev") { //위 버튼 클릭
+                this.pokemonNo > 0 ? this.$emit('getChangeChild', this.pokemonNo - 1) : this.$emit('getChangeChild', 8); //현재 페이지가 0보다 클 경우에 -1, 아니면 끝 페이지로 emit
+            }
+            else if (direction === "next") { //아래 버튼 클릭
+                this.pokemonNo < 8 ? this.$emit('getChangeChild', this.pokemonNo + 1) : this.$emit('getChangeChild', 0);; //현재 페이지가 8보다 작을 경우에 +1, 아니면 첫 페이지로 emit
+            }
+            const audio = this.$refs.clickSound; //ref지정된 오디오 태그
+            if (audio) {
+                audio.play();
+            }
+        }
+    },
+}
+</script>
 <template>
     <div class="intro">
         <div class="intro-gif" :style="menuArray.find(f => f.no === pokemonNo).dexBacground">
@@ -20,7 +60,7 @@
 
                     <span class="types" :style="matchTypeName(pokemonProps.type)?.typeStyle">{{
                         matchTypeName(pokemonProps.type)?.korean
-                        }}</span>
+                    }}</span>
                 </div>
                 <div class="buttons">
                     <button @click="arrowClick('prev')">
@@ -64,44 +104,5 @@
         </div>
     </div>
 </template>
-<script>
-import { typeAPI } from '../api/typeAPI';
 
-export default {
-    props: {
-        pokemonProps: Object,
-        pokemonNo: Number,
-        menuArray: Array,
-    },
-    data() {
-        return {
-            typeArray: typeAPI,
-        }
-    },
-    methods: {
-        playAudio() { //버튼 클릭 시 울음소리 오디오 재생
-            const audio = this.$refs.audioPlayer; //ref지정된 오디오 태그
-            if (audio) {
-                audio.play();
-            }
-        },
-        matchTypeName(type) { //현재 포켓몬의 타입과 일치한 배열의 데이터 가져오기
-            return this.typeArray.find(t => t.type === type);
-        },
-        arrowClick(direction) { //도감 중앙 화살표 버튼 클릭 이밴트. 부모 컴포넌트에 emit전송하여 페이지 변경을 요청
-
-            if (direction === "prev") { //위 버튼 클릭
-                this.pokemonNo > 0 ? this.$emit('getChangeChild', this.pokemonNo - 1) : this.$emit('getChangeChild', 8); //현재 페이지가 0보다 클 경우에 -1, 아니면 끝 페이지로 emit
-            }
-            else if (direction === "next") { //아래 버튼 클릭
-                this.pokemonNo < 8 ? this.$emit('getChangeChild', this.pokemonNo + 1) : this.$emit('getChangeChild', 0);; //현재 페이지가 8보다 작을 경우에 +1, 아니면 첫 페이지로 emit
-            }
-            const audio = this.$refs.clickSound; //ref지정된 오디오 태그
-            if (audio) {
-                audio.play();
-            }
-        }
-    },
-}
-</script>
 <style></style>

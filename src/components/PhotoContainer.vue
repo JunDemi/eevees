@@ -1,13 +1,10 @@
-<template>
-    <div class="view">{{ pokemonNo }}</div>
-</template>
 <script>
 export default {
     props: {
         pokemonProps: Object,
         pokemonNo: Number,
         menuArray: Array,
-    }, 
+    },
     data() {
         return {
 
@@ -15,4 +12,7 @@ export default {
     }
 }
 </script>
+<template>
+    <div class="view">{{ pokemonNo }}</div>
+</template>
 <style scoped></style>

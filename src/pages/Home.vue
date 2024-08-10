@@ -1,22 +1,3 @@
-<template>
-    <section class="home-container">
-        <Intro :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray" @getChangeChild="childUpdate"/>
-        <PhotoContainer :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray"/>
-        <audio ref="clickSound" >
-            <source src="../static/plink.mp3" type="audio/mp3"/>
-        </audio>
-        <div class="menu-list">
-            <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.no"
-                @click="changeMenu(pokemon.no)" :class="{ active: pokemon.no === clickMenu ? true : false }">
-                <img :src="pokemon.modelImg" alt="" width="70px" height="70px" />
-                <p>{{ clickMenu === pokemon.no ? pokemon.name : "" }}</p>
-            </span>
-        </div>
-    </section>
-    <video class="bg-video" autoplay muted loop>
-        <source src="../static/bg_Videos/eevee.mp4" type="video/mp4" />
-    </video>
-</template>
 <script>
 import axios from 'axios';
 import { menuAPI } from '../api/menuAPI';
@@ -94,7 +75,7 @@ export default {
             const speciesResponse = await axios.get(response.data.species.url); //포켓몬의 종
             const koreanGenus = await speciesResponse.data.genera.find(gen => gen.language.name === 'ko'); //한국어: 포켓몬 별명
             const pokemonDesc = await speciesResponse.data.flavor_text_entries.find(desc => desc.language.name === 'ko').flavor_text; //한국어 설명란 하나만 추출
-            
+
             this.pokemonData = { //하나의 객체로 통합하여 할당
                 genus: koreanGenus.genus, //한국어 별명
                 type: response.data.types[0].type.name, //타입명
@@ -106,12 +87,32 @@ export default {
                 capture: speciesResponse.data.capture_rate //포획률
             }
         },
-        childUpdate(changeNumber){ //자식컴포넌트의 emit 핸들러
+        childUpdate(changeNumber) { //자식컴포넌트의 emit 핸들러
             this.clickMenu = changeNumber; //변경된 숫자값을 메뉴에 적용
         }
     }
 }
 </script>
+<template>
+    <section class="home-container">
+        <Intro :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray"
+            @getChangeChild="childUpdate" />
+        <PhotoContainer :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray" />
+        <audio ref="clickSound">
+            <source src="../static/plink.mp3" type="audio/mp3" />
+        </audio>
+        <div class="menu-list">
+            <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.no"
+                @click="changeMenu(pokemon.no)" :class="{ active: pokemon.no === clickMenu ? true : false }">
+                <img :src="pokemon.modelImg" alt="" width="70px" height="70px" />
+                <p>{{ clickMenu === pokemon.no ? pokemon.name : "" }}</p>
+            </span>
+        </div>
+    </section>
+    <video class="bg-video" autoplay muted loop>
+        <source src="../static/bg_Videos/eevee.mp4" type="video/mp4" />
+    </video>
+</template>
 <style scoped>
 span.active {
     width: 250px;
