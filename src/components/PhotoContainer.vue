@@ -48,11 +48,11 @@ export default {
 <template>
     <div class="pokemon-carousel-container">
         <div class="slide-container">
-            <Carousel :itemsToShow="3" :wrapAround="true" :transition="500" ref="myCarousel"
+            <Carousel :itemsToShow="4" :wrapAround="true" :transition="500" ref="myCarousel"
             @slide-start="handleStart">
 			<Slide v-for="data in carouselArray" :key="data.no">
 				<div class="carousel__item">
-					<img class="slideImg" :src="'src/static/carousel/'+ data.name + '.webp'" width="300px" height="300px"/>
+					<img class="slideImg" :src="'src/static/carousel/'+ data.name + '.webp'" width="200px" height="200px"/>
 				</div>
 			</Slide>
 		</Carousel>
