@@ -5,6 +5,9 @@ import "vue3-carousel/dist/carousel.css";
 import { menuAPI } from "../api/menuAPI";
 
 export default {
+    props: {
+        pokemonNo: Number,
+    },
 	components: {
 		Carousel,
 		Slide,
@@ -17,30 +20,26 @@ export default {
     },
     data() {
         return {
-            carouselArray: menuAPI
-            // photoData: [
-            //     "../static/carousel/이브이.webp", 
-            //     "../static/carousel/샤미드.webp", 
-            //     "../static/carousel/쥬피썬더.webp", 
-            //     "../static/carousel/부스터.webp", 
-            //     "../static/carousel/에브이.webp", 
-            //     "../static/carousel/블래키.webp", 
-            //     "../static/carousel/리피아.webp", 
-            //     "../static/carousel/글레이시아.webp", 
-            //     "../static/carousel/님피아.webp"
-            // ],
+            carouselArray: menuAPI,
         }
     },
      methods: {
+        slideButtonClicked(indexNumber) {
+            this.myCarousel.slideTo(indexNumber);
+            const audio = this.$refs.clickSound; //ref지정된 오디오 태그
+            if (audio) {
+                audio.play();
+            }
+        },
         handleStart(data) {
             if(data.slidingToIndex >= data.slidesCount) {
-                console.log(0)
+                this.$emit('getChangeChild', 0)
             }
             else if(data.slidingToIndex < 0) {
-                console.log(data.slidesCount - 1)
+                this.$emit('getChangeChild', data.slidesCount - 1)
             }
             else{
-                console.log(data.slidingToIndex)
+                this.$emit('getChangeChild', data.slidingToIndex)
             }
         },
     }
@@ -60,11 +59,26 @@ export default {
         </div>
         <div class="slide-buttons">
             <div>
-                <button v-for="index in carouselArray.slice(0, 4)" @click="myCarousel.slideTo(index.no)">클릭</button>
+                <button
+                 v-for="index in carouselArray.slice(0, 4)" 
+                 @click="slideButtonClicked(index.no), playAudio"
+                 :class="pokemonNo === index.no ? 'selected' : ''">
+                    <img :src="'src/static/carousel/icon/' + index.name + '.webp'" width="60px" height="60px"/>
+                </button>
             </div>
             <div>
-                <button v-for="index in carouselArray.slice(4, 9)" @click="myCarousel.slideTo(index.no)">클릭</button>
+                <button 
+                v-for="index in carouselArray.slice(4, 9)" 
+                @click="slideButtonClicked(index.no), playAudio" 
+                :class="pokemonNo === index.no ? 'selected' : ''">
+                    <img :src="'src/static/carousel/icon/' + index.name + '.webp'" width="60px" height="60px"/>
+                </button>
+
             </div>
+
+            <audio ref="clickSound">
+                    <source src="../static/plink.mp3" type="audio/mp3" />
+            </audio>
         </div>
     </div>
 </template>

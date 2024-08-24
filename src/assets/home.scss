@@ -248,6 +248,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 20px;
         .slide-container{
             width: 700px;
             .carousel__slide {
@@ -266,11 +267,11 @@
             }
             
             .carousel__slide--sliding {
-              transition: 0.5s;
+              transition: 0.3s;
             }
             
             .carousel__slide {
-              opacity: 0.8;
+              opacity: 0.6;
               transform: rotateY(-10deg) scale(0.7);
             }
             
@@ -279,12 +280,12 @@
             }
             
             .carousel__slide--prev {
-              opacity: 0.8;
+              opacity: 0.6;
               transform: rotateY(-10deg) scale(0.7);
             }
             
             .carousel__slide--next {
-              opacity:  0.8;
+              opacity:  0.6;
               transform: rotateY(10deg) scale(0.7);
             }
             
@@ -298,10 +299,29 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          gap: 10px;
+          gap: 14px;
           div{
             display: flex;
-            gap: 10px;
+            gap: 14px;
+            button{
+                transition: all .2s ease-in;
+                border-radius: 10px;
+                outline: 2px solid #fff;
+                border: 3px solid #95f9f5;
+                background-color: #0d2e49b3;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                font-size: 12px;
+                font-family: 'Ramche';
+                cursor: pointer;
+                padding: 0 20px 10px 20px;
+            }
+            .selected{
+                background-color: #ffffffb5;
+            }
           }
         }
     }

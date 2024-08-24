@@ -97,7 +97,7 @@ export default {
     <section class="home-container">
         <Intro :pokemonProps="pokemonData" :pokemonNo="clickMenu" :menuArray="menuArray"
             @getChangeChild="childUpdate" />
-        <PhotoContainer/>
+        <PhotoContainer :pokemonNo="clickMenu" @getChangeChild="childUpdate"/>
         <audio ref="clickSound">
             <source src="../static/plink.mp3" type="audio/mp3" />
         </audio>
