@@ -210,8 +210,12 @@
             }
         }
     }
-    .view{
-        
+    .carousel{
+        width: 600px;
+        height: 100%;
+        overflow: hidden;
+        background-color: white;
+        display: flex;
     }
     .menu-list {
         width: 300px;

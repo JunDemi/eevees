@@ -104,7 +104,7 @@ export default {
         <div class="menu-list">
             <span v-for="pokemon in menuArray" :style="pokemon.menuStyle" :key="pokemon.no"
                 @click="changeMenu(pokemon.no)" :class="{ active: pokemon.no === clickMenu ? true : false }">
-                <img :src="pokemon.modelImg" alt="" width="70px" height="70px" />
+                <img src="/src/static/pokeball.png" alt="" width="40px" height="40px" />
                 <p>{{ clickMenu === pokemon.no ? pokemon.name : "" }}</p>
             </span>
         </div>
