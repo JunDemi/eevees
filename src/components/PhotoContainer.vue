@@ -34,19 +34,20 @@ export default {
         },
         slideButtonClicked(indexNumber) {
             this.myCarousel.slideTo(indexNumber);
-            clickSound();
+            this.clickSound();
         },
         handleStart(data) {
-            if(data.slidingToIndex >= data.slidesCount) {
-                this.$emit('getChangeChild', 0);
+            if(data.slidingToIndex < 0) {
+                this.$emit('getChangeChild', data.slidingToIndex + 9);
             }
-            else if(data.slidingToIndex < 0) {
-                this.$emit('getChangeChild', data.slidesCount - 1)
+            else if(data.slidingToIndex > data.slidesCount) {
+                this.$emit('getChangeChild', data.slidingToIndex - 9);
             }
             else{
                 this.$emit('getChangeChild', data.slidingToIndex)
             }
-            this. clickSound();
+            console.log(data);
+            this.clickSound();
         },
         //클릭 효과음
         clickSound() {
@@ -61,11 +62,11 @@ export default {
 <template>
     <div class="pokemon-carousel-container">
         <div class="slide-container">
-            <Carousel :itemsToShow="4" :wrapAround="true" :transition="500" ref="myCarousel"
+            <Carousel :itemsToShow="4" :wrapAround="true" :transition="200" ref="myCarousel" :mouseDrag="false"
             @slide-start="handleStart">
-			<Slide v-for="data in carouselArray" :key="data.no">
+			<Slide v-for="data in carouselArray" :key="data.no" @click="myCarousel.slideTo(data.no)">
 				<div class="carousel__item">
-					<img class="slideImg" :src="'src/static/carousel/'+ data.name + '.webp'" width="200px" height="200px"/>
+					<img class="slideImg" :src="'src/static/carousel/'+ data.name + '.webp'" width="200px" height="200px" />
 				</div>
 			</Slide>
 		</Carousel>
