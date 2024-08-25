@@ -18,22 +18,27 @@ export default {
             myCarousel
         }
     },
+    watch: {
+        pokemonNo(index) {
+            this.changeSlide(index);
+        }
+    },
     data() {
         return {
             carouselArray: menuAPI,
         }
     },
      methods: {
+        changeSlide(indexNumber){
+            this.myCarousel.slideTo(indexNumber);
+        },
         slideButtonClicked(indexNumber) {
             this.myCarousel.slideTo(indexNumber);
-            const audio = this.$refs.clickSound; //ref지정된 오디오 태그
-            if (audio) {
-                audio.play();
-            }
+            clickSound();
         },
         handleStart(data) {
             if(data.slidingToIndex >= data.slidesCount) {
-                this.$emit('getChangeChild', 0)
+                this.$emit('getChangeChild', 0);
             }
             else if(data.slidingToIndex < 0) {
                 this.$emit('getChangeChild', data.slidesCount - 1)
@@ -41,7 +46,15 @@ export default {
             else{
                 this.$emit('getChangeChild', data.slidingToIndex)
             }
+            this. clickSound();
         },
+        //클릭 효과음
+        clickSound() {
+            const audio = this.$refs.clickSound; //ref지정된 오디오 태그
+            if (audio) {
+                audio.play();
+            }
+        }
     }
 }
 </script>
@@ -61,7 +74,7 @@ export default {
             <div>
                 <button
                  v-for="index in carouselArray.slice(0, 4)" 
-                 @click="slideButtonClicked(index.no), playAudio"
+                 @click="slideButtonClicked(index.no)"
                  :class="pokemonNo === index.no ? 'selected' : ''">
                     <img :src="'src/static/carousel/icon/' + index.name + '.webp'" width="60px" height="60px"/>
                 </button>
@@ -69,13 +82,12 @@ export default {
             <div>
                 <button 
                 v-for="index in carouselArray.slice(4, 9)" 
-                @click="slideButtonClicked(index.no), playAudio" 
+                @click="slideButtonClicked(index.no)" 
                 :class="pokemonNo === index.no ? 'selected' : ''">
                     <img :src="'src/static/carousel/icon/' + index.name + '.webp'" width="60px" height="60px"/>
                 </button>
 
             </div>
-
             <audio ref="clickSound">
                     <source src="../static/plink.mp3" type="audio/mp3" />
             </audio>
